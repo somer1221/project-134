@@ -39,9 +39,9 @@ function draw() {
    if(statusofmodel != "") {
     objectDetector.detect(video, gotResults);
     //console.log(newresults.length()); 
-    for(i=0;i<newresults.length;i++) {
+    for(i=0;i<newresults.length();i++) {
      document.getElementById("status").innerHTML = "Model Status: Objects Detected";
-        if(newresults[i].label = "person") {
+        if(newresults[i].label == "person") {
             document.getElementById("status").innerHTML = "Model Status: Baby Detected";
             alertsound.stop();
             fill("#FF0000");
@@ -51,12 +51,16 @@ function draw() {
         stroke("#FF0000");
         rect(newresults[i].x, newresults[i].y, newresults[i].width, newresults[i].height);
         }
-        else {
+        else if((newresults[i].label != "person")||(newresults.length() == 0)){
           document.getElementById("status").innerHTML = "Model Status: Baby Not Detected";
           alertsound.play();
-          console.log("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEfffffffffffffffffffffffffffffffffffff")
+          console.log("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEfffffffffffffffffffffffffffffffffffff");
         }
-        
+        //else if(newresults.length() == 0){
+            //document.getElementById("status").innerHTML = "Model Status: Baby Not Detected";
+            //alertsound.play();
+           // console.log("GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+          //}
       }
     }
 }
